@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--==================== UNICONS 图标====================-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+  <section>第一个位置</section>
+  <section>第二个位置</section>
+  <section>第三个位置</section>
+  <section>第四个位置</section>
+  <section>第五个位置</section>
+
+  <script>
+    // 获取所有的 section 元素
+    const sections = document.querySelectorAll('section');
+    // 当前可视区域的索引
+    let currentIndex = 0;
+    // 是否正在滚动的标志
+    let isScrolling = false;
+    // 监听鼠标滚轮事件
+    document.addEventListener('wheel', (event) => {
+      // 阻止默认滚动行为
+      event.preventDefault();
+      // 确保不会连续触发滚动
+      if (!isScrolling) {
+        isScrolling = true;
+        // 根据滚轮方向更新当前可视区域的索引
+        if (event.deltaY > 0) {
+          currentIndex = Math.min(currentIndex + 1, sections.length - 1);
+        } else {
+          currentIndex = Math.max(currentIndex - 1, 0);
+        }
+        // 滚动到下一个位置
+        sections[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+        // 添加延时，防止连续触发滚动
+        setTimeout(() => {
+          isScrolling = false;
+        }, 500);
+      }
+    });
+  </script>
+</body>
+</html>
