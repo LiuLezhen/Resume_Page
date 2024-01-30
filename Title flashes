@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title Example</title>
+  <script>
+    function blinkTitle() {
+      let pageTitle = document.title;
+      let pageTitleOriginal = pageTitle;
+      let changeTitle = true;
+
+      setInterval(function() {
+        if (changeTitle) {
+          document.title = '标题示例';
+          changeTitle = false;
+        } else {
+          document.title = pageTitleOriginal;
+          changeTitle = true;
+        }
+      }, 1000); // 这里的 1000 表示每隔1秒切换一次标题内容
+    }
+    blinkTitle(); // 页面加载后立即调用函数开始闪动标题
+  </script>
+</head>
+<body>
+<!-- 网页内容 -->
+</body>
+</html>
